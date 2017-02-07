@@ -24,3 +24,21 @@ abcd 5686 raz 3
 		t.Errorf("got %q, want %q", output, expected)
 	}
 }
+
+func TestHead(t *testing.T) {
+	input := "one\ntwo\nthree\nfour\n"
+	expected := "one\ntwo"
+	output := StringPipe(input).Head(2).String()
+	if output != expected {
+		t.Errorf("got %q, want %q", output, expected)
+	}
+}
+
+func TestTail(t *testing.T) {
+	input := "one\ntwo\nthree\nfour\n"
+	expected := "three\nfour\n" // tail 3 due to trailing newline
+	output := StringPipe(input).Tail(3).String()
+	if output != expected {
+		t.Errorf("got %q, want %q", output, expected)
+	}
+}
